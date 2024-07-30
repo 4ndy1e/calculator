@@ -1,0 +1,12 @@
+body {
+  background-color: #86cfff;
+  display: flex;
+  justify-content: center;
+}
+
+.parent {
+  width: 275px;
+  height: 550px;
+  background-color: white;
+  border-radius: 30px;
+}
