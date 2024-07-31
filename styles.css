@@ -18,14 +18,13 @@ body {
 }
 
 .display {
-  border: solid 1px black;
+  border: solid 1px white;
   width: 90%;
   height: 30%;
 }
 
 .buttonsContainer {
   width: 90%;
-  border: solid 1px black;
   gap: 15px;
   display: flex;
   flex-wrap: wrap;
@@ -36,6 +35,15 @@ body {
   width: 56px;
   border-radius: 15px;
   border: none;
+  font-family: "Poppins";
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #303136;
+}
+
+.button:hover {
+  opacity: 0.5;
 }
 
 .zeroButton {
@@ -43,6 +51,11 @@ body {
   width: 127px;
   border-radius: 15px;
   border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: "Poppins";
+  color: white;
+  background-color: #303136;
 }
 
 .operator {
