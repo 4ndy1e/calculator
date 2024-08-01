@@ -68,8 +68,12 @@ function calculate(currentResults) {
     return isNaN(value) ? value : Number(value);
     // Only convert if it's a number
   });
-  console.log(currentMath);
 
-  console.log(operate(currentMath[0], currentMath[2], currentMath[1]));
   return operate(currentMath[0], currentMath[2], currentMath[1]);
 }
+
+// equals button
+let equals = document.querySelector(".equals");
+equals.addEventListener("mousedown", () => {
+  results.textContent = calculate(results.textContent);
+});
