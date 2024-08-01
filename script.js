@@ -35,6 +35,7 @@ let results = document.querySelector(".results");
 let clearButton = document.querySelector("#clear");
 clearButton.addEventListener("mousedown", () => {
   results.textContent = "";
+  containsOperation = false;
 });
 
 // display numbers
@@ -63,9 +64,12 @@ oper.forEach((operator) =>
 
 function calculate(currentResults) {
   let currentMath = currentResults.split(/([+\-x/])/);
+  currentMath = currentMath.map((value) => {
+    return isNaN(value) ? value : Number(value);
+    // Only convert if it's a number
+  });
   console.log(currentMath);
 
   console.log(operate(currentMath[0], currentMath[2], currentMath[1]));
-
   return operate(currentMath[0], currentMath[2], currentMath[1]);
 }
