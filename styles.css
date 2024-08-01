@@ -21,6 +21,18 @@ body {
   border: solid 1px white;
   width: 90%;
   height: 30%;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+}
+
+.results {
+  margin: 0px 20px 5px 0px;
+  letter-spacing: 5px;
+  font-size: 2em;
+  font-family: "Poppins";
+  padding: 0px;
 }
 
 .buttonsContainer {
@@ -28,6 +40,7 @@ body {
   gap: 15px;
   display: flex;
   flex-wrap: wrap;
+  font-family: "Poppins";
 }
 
 .button {
