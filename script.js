@@ -55,16 +55,17 @@ oper.forEach((operator) =>
       containsOperation = true;
     } else {
       console.log("calcuate it");
-      calculate(results.textContent);
+      let prevCalc = calculate(results.textContent);
+      results.textContent = prevCalc + operator.textContent;
     }
   })
 );
 
 function calculate(currentResults) {
-  console.log(currentResults);
-
   let currentMath = currentResults.split(/([+\-x/])/);
   console.log(currentMath);
 
   console.log(operate(currentMath[0], currentMath[2], currentMath[1]));
+
+  return operate(currentMath[0], currentMath[2], currentMath[1]);
 }
