@@ -1,7 +1,4 @@
-let num1;
-let num2;
-let operator;
-
+// basic math functions
 function add(num1, num2) {
   return num1 + num2;
 }
@@ -26,7 +23,48 @@ function operate(num1, num2, operator) {
       return subract(num1, num2);
     case "/":
       return divide(num1, num2);
-    case "*":
+    case "x":
       return multiply(num1, num2);
   }
+}
+
+// results display
+let results = document.querySelector(".results");
+
+// clear results
+let clearButton = document.querySelector("#clear");
+clearButton.addEventListener("mousedown", () => {
+  results.textContent = "";
+});
+
+// display numbers
+let num = document.querySelectorAll("#number");
+num.forEach((number) => {
+  number.addEventListener("mousedown", () => {
+    results.textContent = results.textContent + number.textContent;
+  });
+});
+
+let containsOperation = false;
+
+let oper = document.querySelectorAll(".operator");
+oper.forEach((operator) =>
+  operator.addEventListener("mousedown", () => {
+    if (!containsOperation) {
+      results.textContent = results.textContent + operator.textContent;
+      containsOperation = true;
+    } else {
+      console.log("calcuate it");
+      calculate(results.textContent);
+    }
+  })
+);
+
+function calculate(currentResults) {
+  console.log(currentResults);
+
+  let currentMath = currentResults.split(/([+\-x/])/);
+  console.log(currentMath);
+
+  console.log(operate(currentMath[0], currentMath[2], currentMath[1]));
 }
