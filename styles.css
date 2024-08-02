@@ -32,16 +32,22 @@ body {
   height: 30%;
   color: white;
   display: flex;
-  justify-content: flex-end;
-  align-items: end;
+  justify-content: center;
 }
 
 .results {
-  margin: 0px 20px 5px 0px;
-  letter-spacing: 5px;
+  width: 90%;
+  margin: 0px;
+  letter-spacing: 2px;
   font-size: 2em;
   font-family: "Poppins";
   padding: 0px;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
+}
+
+.results::-webkit-scrollbar {
+  display: none;
 }
 
 .buttonsContainer {
