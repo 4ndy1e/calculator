@@ -1,10 +1,18 @@
 body {
-  background-color: #86cfff;
+  background-color: #303136;
   display: flex;
   justify-content: center;
 }
 
 .parent {
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.parentCalc {
   width: 300px;
   height: 550px;
   background-color: #17181a;
@@ -77,4 +85,32 @@ body {
 
 .equals {
   background-color: #339dff;
+}
+
+h1 {
+  font-family: "Poppins";
+  font-size: 64px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.descriptionParent {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gradient {
+  background-image: linear-gradient(to right, #00c6fb 0%, #005bea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  font-size: 15px;
+  font-family: "Poppins";
+  margin-top: 20px;
+  font-weight: bold;
+  color: #8b8b8b;
 }
