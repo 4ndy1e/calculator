@@ -8,7 +8,10 @@ function subract(num1, num2) {
 }
 
 function divide(num1, num2) {
-  return num1 / num2;
+  let answer = (num1 / num2).toString();
+  if (answer.length > 6) {
+    return answer.substring(0, 8);
+  }
 }
 
 function multiply(num1, num2) {
@@ -76,4 +79,5 @@ function calculate(currentResults) {
 let equals = document.querySelector(".equals");
 equals.addEventListener("mousedown", () => {
   results.textContent = calculate(results.textContent);
+  containsOperation = false;
 });
