@@ -18,6 +18,6 @@ This project is a simple web-based calculator that allows users to perform the f
 5. Clear: Use the "C" button to clear the current input.
 
 ### Technologies Used
-**HTML**: Provides the structure for the calculator interface.
-**CSS**: Styles the calculator with a modern dark theme.
-**JavaScript**: Implements the functionality for arithmetic operations and user interaction.
+- **HTML**: Provides the structure for the calculator interface.
+- **CSS**: Styles the calculator with a modern dark theme.
+- **JavaScript**: Implements the functionality for arithmetic operations and user interaction.
