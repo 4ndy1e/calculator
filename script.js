@@ -8,10 +8,7 @@ function subract(num1, num2) {
 }
 
 function divide(num1, num2) {
-  let answer = (num1 / num2).toString();
-  if (answer.length > 6) {
-    return Math.round(answer);
-  }
+  return Math.round((num1 / num2) * 100000) / 100000;
 }
 
 function multiply(num1, num2) {
