@@ -48,7 +48,7 @@ num.forEach((number) => {
 
 let containsOperation = false;
 
-let oper = document.querySelectorAll(".operator");
+let oper = document.querySelectorAll("#op");
 oper.forEach((operator) =>
   operator.addEventListener("mousedown", () => {
     if (!containsOperation) {
