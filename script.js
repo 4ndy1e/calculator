@@ -17,13 +17,13 @@ function multiply(num1, num2) {
 
 function operate(num1, num2, operator) {
   switch (operator) {
-    case "+":
+    case "add":
       return add(num1, num2);
-    case "-":
+    case "sub":
       return subract(num1, num2);
-    case "/":
+    case "div":
       return divide(num1, num2);
-    case "x":
+    case "mult":
       return multiply(num1, num2);
   }
 }
@@ -34,8 +34,10 @@ let results = document.querySelector(".results");
 // clear results
 let clearButton = document.querySelector("#clear");
 clearButton.addEventListener("mousedown", () => {
-  results.textContent = "";
   containsOperation = false;
+  containsNum = false;
+  operElement.style.opacity = 1;
+  clearDisplay();
 });
 
 // display numbers
@@ -43,42 +45,55 @@ let num = document.querySelectorAll("#number");
 num.forEach((number) => {
   number.addEventListener("mousedown", () => {
     results.textContent = results.textContent + number.textContent;
+    containsNum = true;
+
+    if (containsOperation && containsNum) {
+      num2 = results.textContent;
+      console.log(num1 + "operate" + num2);
+    }
   });
 });
 
 // CALCULATIONS
 let num1, num2;
 let containsOperation = false;
-let currentOperation;
+let containsNum = false;
+let operElement, currentOper;
 
 let oper = document.querySelectorAll(".operator");
 oper.forEach((operator) =>
   operator.addEventListener("mousedown", () => {
-    if (!containsOperation) {
+    if (!containsOperation || containsNum) {
       operator.style.opacity = 0.3;
 
       // set operation global variables
       num1 = getNum();
-      clear();
+      clearDisplay();
       containsOperation = true;
-      currentOperation = operator;
+      operElement = operator;
+      currentOper = operator.id;
 
-      console.log(operator.id);
-      console.log(currentOperation);
-      console.log("Num1 = " + num1);
+      // console.log(operator.id);
+      console.log(operElement);
+      console.log(currentOper);
+      // console.log("Num1 = " + num1);
     } else {
-      // undo prev operation button style when another is clicked
-      currentOperation.style.opacity = 1;
-
-      // set new operation
-      currentOperation = operator;
-      operator.style.opacity = 0.5;
-      console.log("Current Operation = " + operator.id);
+      newOperation(operator);
     }
   })
 );
 
-function clear() {
+function newOperation(operator) {
+  // undo prev operation button style when another is clicked
+  operElement.style.opacity = 1;
+
+  // set new operation
+  operElement = operator;
+  operator.style.opacity = 0.5;
+  console.log("Current Operation = " + operator.id);
+}
+
+function clearDisplay() {
   results.textContent = "";
 }
 
@@ -86,8 +101,13 @@ function getNum() {
   return results.textContent;
 }
 
-function calculate(currentResults) {}
+function calculate() {}
 
 // equals button
 let equals = document.querySelector(".equals");
-equals.addEventListener("mousedown", () => {});
+equals.addEventListener("mousedown", () => {
+  console.log(num1 + currentOper + num2);
+  containsOperation = false;
+  operElement.style.opacity = 1;
+  results.textContent = operate(num1, num2, currentOper);
+});
