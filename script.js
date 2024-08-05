@@ -46,35 +46,42 @@ num.forEach((number) => {
   });
 });
 
-let containsOperation = false;
+// CALCULATIONS
 
-let oper = document.querySelectorAll("#op");
+let containsOperation = false;
+let currentOperation;
+
+let oper = document.querySelectorAll(".operator");
 oper.forEach((operator) =>
   operator.addEventListener("mousedown", () => {
     if (!containsOperation) {
-      results.textContent = results.textContent + operator.textContent;
+      // set operation global variables
       containsOperation = true;
+      currentOperation = operator;
+
+      operator.style.opacity = 0.3;
+
+      console.log(operator.id);
+      console.log(currentOperation);
     } else {
-      console.log("calcuate it");
-      let prevCalc = calculate(results.textContent);
-      results.textContent = prevCalc + operator.textContent;
+      // undo prev operation button style when another is clicked
+      currentOperation.style.opacity = 1;
+
+      // set new operation
+      currentOperation = operator;
+      operator.style.opacity = 0.5;
+      console.log(operator.id);
     }
+    clear();
   })
 );
 
-function calculate(currentResults) {
-  let currentMath = currentResults.split(/([+\-x/])/);
-  currentMath = currentMath.map((value) => {
-    return isNaN(value) ? value : Number(value);
-    // Only convert if it's a number
-  });
-
-  return operate(currentMath[0], currentMath[2], currentMath[1]);
+function clear() {
+  results.textContent = "";
 }
+
+function calculate(currentResults) {}
 
 // equals button
 let equals = document.querySelector(".equals");
-equals.addEventListener("mousedown", () => {
-  results.textContent = calculate(results.textContent);
-  containsOperation = false;
-});
+equals.addEventListener("mousedown", () => {});
