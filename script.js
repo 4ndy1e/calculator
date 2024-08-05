@@ -47,7 +47,7 @@ num.forEach((number) => {
 });
 
 // CALCULATIONS
-
+let num1, num2;
 let containsOperation = false;
 let currentOperation;
 
@@ -55,14 +55,17 @@ let oper = document.querySelectorAll(".operator");
 oper.forEach((operator) =>
   operator.addEventListener("mousedown", () => {
     if (!containsOperation) {
+      operator.style.opacity = 0.3;
+
       // set operation global variables
+      num1 = getNum();
+      clear();
       containsOperation = true;
       currentOperation = operator;
 
-      operator.style.opacity = 0.3;
-
       console.log(operator.id);
       console.log(currentOperation);
+      console.log("Num1 = " + num1);
     } else {
       // undo prev operation button style when another is clicked
       currentOperation.style.opacity = 1;
@@ -70,14 +73,17 @@ oper.forEach((operator) =>
       // set new operation
       currentOperation = operator;
       operator.style.opacity = 0.5;
-      console.log(operator.id);
+      console.log("Current Operation = " + operator.id);
     }
-    clear();
   })
 );
 
 function clear() {
   results.textContent = "";
+}
+
+function getNum() {
+  return results.textContent;
 }
 
 function calculate(currentResults) {}
