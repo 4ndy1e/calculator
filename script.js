@@ -54,9 +54,8 @@ num.forEach((number) => {
 
     if (containsOperation && containsNum) {
       num2 = results.textContent;
-      console.log(num1 + currentOper + num2);
-      answer = operate(num1, num2, currentOper);
-
+      console.log("num");
+      answer = true;
       containsOperation = false;
       operElement.style.opacity = 1;
     }
@@ -64,7 +63,8 @@ num.forEach((number) => {
 });
 
 // CALCULATIONS
-let num1, num2, operElement, currentOper, answer;
+let num1, num2, operElement, currentOper;
+let answer = false;
 let containsOperation = false;
 let containsNum = false;
 
@@ -72,15 +72,26 @@ let oper = document.querySelectorAll(".operator");
 oper.forEach((operator) =>
   operator.addEventListener("mousedown", () => {
     if (!containsOperation) {
-      operator.style.opacity = 0.3;
+      if (answer) {
+        solve();
+        num1 = getNum();
+        console.log(num1);
+        containsOperation = true;
+        operElement = operator;
+        currentOper = operator.id;
+        operator.style.opacity = 0.3;
+        clearDisplay();
+      } else {
+        operator.style.opacity = 0.3;
 
-      // set operation global variables
-      num1 = getNum();
-      clearDisplay();
-      containsOperation = true;
-      containsNum = false;
-      operElement = operator;
-      currentOper = operator.id;
+        // set operation global variables
+        num1 = getNum();
+        clearDisplay();
+        containsOperation = true;
+        containsNum = false;
+        operElement = operator;
+        currentOper = operator.id;
+      }
     } else {
       // change prev operation
       operElement.style.opacity = 1;
@@ -117,6 +128,7 @@ function calculate() {}
 function solve() {
   console.log(num1 + currentOper + num2);
   containsOperation = false;
+  answer = false;
   operElement.style.opacity = 1;
   results.textContent = operate(num1, num2, currentOper);
 }
@@ -125,6 +137,8 @@ function solve() {
 let equals = document.querySelector(".equals");
 equals.addEventListener("mousedown", () => {
   solve();
+  console.log(containsOperation);
+  console.log(answer);
 });
 
 // delete button
