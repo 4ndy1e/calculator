@@ -16,6 +16,8 @@ function multiply(num1, num2) {
 }
 
 function operate(num1, num2, operator) {
+  num1 = Number(num1);
+  num2 = Number(num2);
   switch (operator) {
     case "add":
       return add(num1, num2);
@@ -34,10 +36,13 @@ let results = document.querySelector(".results");
 // clear results
 let clearButton = document.querySelector("#clear");
 clearButton.addEventListener("mousedown", () => {
+  clearDisplay();
+  num1 = undefined;
+  num2 = undefined;
+  answer = undefined;
   containsOperation = false;
   containsNum = false;
   operElement.style.opacity = 1;
-  clearDisplay();
 });
 
 // display numbers
@@ -49,36 +54,42 @@ num.forEach((number) => {
 
     if (containsOperation && containsNum) {
       num2 = results.textContent;
-      console.log(num1 + "operate" + num2);
+      console.log(num1 + currentOper + num2);
+      answer = operate(num1, num2, currentOper);
+
+      containsOperation = false;
+      operElement.style.opacity = 1;
     }
   });
 });
 
 // CALCULATIONS
-let num1, num2;
+let num1, num2, operElement, currentOper, answer;
 let containsOperation = false;
 let containsNum = false;
-let operElement, currentOper;
 
 let oper = document.querySelectorAll(".operator");
 oper.forEach((operator) =>
   operator.addEventListener("mousedown", () => {
-    if (!containsOperation || containsNum) {
+    if (!containsOperation) {
       operator.style.opacity = 0.3;
 
       // set operation global variables
       num1 = getNum();
       clearDisplay();
       containsOperation = true;
+      containsNum = false;
       operElement = operator;
       currentOper = operator.id;
-
-      // console.log(operator.id);
-      console.log(operElement);
-      console.log(currentOper);
-      // console.log("Num1 = " + num1);
     } else {
-      newOperation(operator);
+      // change prev operation
+      operElement.style.opacity = 1;
+
+      // set new operation
+      operator.style.opacity = 0.3;
+      operElement = operator;
+      currentOper = operator.id;
+      // console.log("changed operation to " + currentOper);
     }
   })
 );
@@ -103,11 +114,29 @@ function getNum() {
 
 function calculate() {}
 
-// equals button
-let equals = document.querySelector(".equals");
-equals.addEventListener("mousedown", () => {
+function solve() {
   console.log(num1 + currentOper + num2);
   containsOperation = false;
   operElement.style.opacity = 1;
   results.textContent = operate(num1, num2, currentOper);
+}
+
+// equals button
+let equals = document.querySelector(".equals");
+equals.addEventListener("mousedown", () => {
+  solve();
+});
+
+// delete button
+let del = document.querySelector("#del");
+del.addEventListener("mousedown", () => {
+  let length = results.textContent.length;
+  results.textContent = results.textContent.substring(0, length - 1);
+  console.log(length);
+});
+
+// ngeation button
+let negate = document.querySelector("#negate");
+negate.addEventListener("mousedown", () => {
+  results.textContent = multiply(Number(results.textContent), -1);
 });
