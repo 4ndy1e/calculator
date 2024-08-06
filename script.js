@@ -36,13 +36,13 @@ let results = document.querySelector(".results");
 // clear results
 let clearButton = document.querySelector("#clear");
 clearButton.addEventListener("mousedown", () => {
+  clearDisplay();
   num1 = undefined;
   num2 = undefined;
   answer = undefined;
   containsOperation = false;
   containsNum = false;
   operElement.style.opacity = 1;
-  clearDisplay();
 });
 
 // display numbers
@@ -127,6 +127,15 @@ equals.addEventListener("mousedown", () => {
   solve();
 });
 
+// delete button
+let del = document.querySelector("#del");
+del.addEventListener("mousedown", () => {
+  let length = results.textContent.length;
+  results.textContent = results.textContent.substring(0, length - 1);
+  console.log(length);
+});
+
+// ngeation button
 let negate = document.querySelector("#negate");
 negate.addEventListener("mousedown", () => {
   results.textContent = multiply(Number(results.textContent), -1);
