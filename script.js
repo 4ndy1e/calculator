@@ -20,11 +20,11 @@ function operate(num1, num2, operator) {
   num2 = Number(num2);
   switch (operator) {
     case "add":
-      return add(num1, num2);
+      return num1 + num2;
     case "sub":
-      return subract(num1, num2);
+      return num1 - num2;
     case "div":
-      return divide(num1, num2);
+      return Math.round((num1 / num2) * 100000) / 100000;
     case "mult":
       return multiply(num1, num2);
   }
@@ -54,7 +54,6 @@ num.forEach((number) => {
 
     if (containsOperation && containsNum) {
       num2 = results.textContent;
-      console.log("num");
       answer = true;
       containsOperation = false;
       operElement.style.opacity = 1;
@@ -75,7 +74,6 @@ oper.forEach((operator) =>
       if (answer) {
         solve();
         num1 = getNum();
-        console.log(num1);
         containsOperation = true;
         operElement = operator;
         currentOper = operator.id;
@@ -100,7 +98,6 @@ oper.forEach((operator) =>
       operator.style.opacity = 0.3;
       operElement = operator;
       currentOper = operator.id;
-      // console.log("changed operation to " + currentOper);
     }
   })
 );
@@ -112,7 +109,6 @@ function newOperation(operator) {
   // set new operation
   operElement = operator;
   operator.style.opacity = 0.5;
-  console.log("Current Operation = " + operator.id);
 }
 
 function clearDisplay() {
@@ -126,7 +122,6 @@ function getNum() {
 function calculate() {}
 
 function solve() {
-  console.log(num1 + currentOper + num2);
   containsOperation = false;
   answer = false;
   operElement.style.opacity = 1;
@@ -137,8 +132,6 @@ function solve() {
 let equals = document.querySelector(".equals");
 equals.addEventListener("mousedown", () => {
   solve();
-  console.log(containsOperation);
-  console.log(answer);
 });
 
 // delete button
@@ -146,7 +139,6 @@ let del = document.querySelector("#del");
 del.addEventListener("mousedown", () => {
   let length = results.textContent.length;
   results.textContent = results.textContent.substring(0, length - 1);
-  console.log(length);
 });
 
 // ngeation button
