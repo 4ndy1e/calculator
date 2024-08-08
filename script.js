@@ -1,16 +1,4 @@
 // basic math functions
-function add(num1, num2) {
-  return num1 + num2;
-}
-
-function subract(num1, num2) {
-  return num1 - num2;
-}
-
-function divide(num1, num2) {
-  return Math.round((num1 / num2) * 100000) / 100000;
-}
-
 function multiply(num1, num2) {
   return num1 * num2;
 }
@@ -63,9 +51,9 @@ num.forEach((number) => {
 
 // CALCULATIONS
 let num1, num2, operElement, currentOper;
-let answer = false;
-let containsOperation = false;
-let containsNum = false;
+let answer,
+  containsOperation,
+  containsNum = false;
 
 let oper = document.querySelectorAll(".operator");
 oper.forEach((operator) =>
@@ -74,33 +62,32 @@ oper.forEach((operator) =>
       if (answer) {
         solve();
         num1 = getNum();
+        highlightButton(operator);
         containsOperation = true;
-        operElement = operator;
-        currentOper = operator.id;
-        operator.style.opacity = 0.3;
         clearDisplay();
       } else {
-        operator.style.opacity = 0.3;
-
         // set operation global variables
         num1 = getNum();
         clearDisplay();
-        containsOperation = true;
         containsNum = false;
-        operElement = operator;
-        currentOper = operator.id;
+        containsOperation = true;
+        highlightButton(operator);
       }
     } else {
       // change prev operation
       operElement.style.opacity = 1;
 
       // set new operation
-      operator.style.opacity = 0.3;
-      operElement = operator;
-      currentOper = operator.id;
+      highlightButton(opetator);
     }
   })
 );
+
+function highlightButton(operator) {
+  operElement = operator;
+  currentOper = operator.id;
+  operator.style.opacity = 0.3;
+}
 
 function newOperation(operator) {
   // undo prev operation button style when another is clicked
@@ -118,8 +105,6 @@ function clearDisplay() {
 function getNum() {
   return results.textContent;
 }
-
-function calculate() {}
 
 function solve() {
   containsOperation = false;
