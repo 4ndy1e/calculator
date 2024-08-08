@@ -41,11 +41,11 @@ num.forEach((number) => {
     containsNum = true;
 
     if (containsOperation && containsNum) {
-      num2 = results.textContent;
       answer = true;
       containsOperation = false;
       operElement.style.opacity = 1;
     }
+    num2 = results.textContent;
   });
 });
 
